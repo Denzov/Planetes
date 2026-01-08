@@ -1,0 +1,3 @@
+/home/denzov/DProjects/Planetes/build/CMakeFiles/Planetes.dir
+/home/denzov/DProjects/Planetes/build/CMakeFiles/edit_cache.dir
+/home/denzov/DProjects/Planetes/build/CMakeFiles/rebuild_cache.dir
