@@ -13,9 +13,11 @@ public:
     }
 
     float getTime() const { return GetTime(); }
-    float getDeltaTime() const { 
-        const float dt = GetFrameTime();
 
+    float getDeltaTime() const { return GetFrameTime(); }
+
+    float getScaledDeltaTime() const { 
+        const float dt = GetFrameTime();
         return _time_scale * dt; 
     }
     float getTimeScale() const { return _time_scale; }
@@ -28,6 +30,17 @@ public:
     void resetTimeScale() { _time_scale = 1.0f; }
     void addTimeScale(float scale) { _time_scale += scale; }
     void mulTimeScale(float scale) { _time_scale *= scale; }
+
+    bool isReverse() const { return _time_scale < 0.f; }
+    bool isReverseFront() const {
+        static bool prev_is_reverse = false;
+        const bool is_reverse = isReverse();
+
+        const bool front = prev_is_reverse != is_reverse;
+
+        prev_is_reverse = is_reverse;
+        return front;
+    }
 
 private:
     RealTimeHandler() = default;
@@ -53,7 +66,7 @@ public:
         _time += _TIME_STEP;
     }
 
-    float getTime() const { return _time; }
+    double getTime() const { return _time; }
 
     PhysTimeHandler(const PhysTimeHandler&) = delete;
     PhysTimeHandler& operator=(const PhysTimeHandler&) = delete;
@@ -63,8 +76,8 @@ private:
     ~PhysTimeHandler() = default;
 
 private:
-    static constexpr float _TIME_STEP = 0.003f;
-    float _time = 0.f;
+    static constexpr double _TIME_STEP = 0.00005f;
+    double _time = 0.f;
 
 };
 

@@ -8,6 +8,7 @@
 
 #include "../../AppParams/MainCamera2D/MCamera2DHandler.h"
 #include "../../AppParams/MainWindow/MWindowHandler.h"
+#include "../../Simulation/TimeHandler/TimeHandler.h"
 
 #include "../../UI/UI.params.h"
 
@@ -150,5 +151,78 @@ HANDLE_KEY_BEGIN(F)
         );
     }
 HANDLE_KEY_END
+
+HANDLE_KEY_BEGIN(SPACE)
+    if(IsKeyPressed(RBKEY_NAME(SPACE))){
+        if(RealTimeHandler::getInstance()->getTimeScale() == 1.0f)
+            RealTimeHandler::getInstance()->setTimeScale(0.0f);
+        else
+            RealTimeHandler::getInstance()->resetTimeScale();
+    }
+HANDLE_KEY_END
+
+HANDLE_KEY_BEGIN(E)
+    if(IsKeyPressed(RBKEY_NAME(E))){
+        const bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
+
+        if(is_shift)
+            RealTimeHandler::getInstance()->addTimeScale(5.f);
+        else
+            RealTimeHandler::getInstance()->addTimeScale(1.f);
+    }
+HANDLE_KEY_END
+
+HANDLE_KEY_BEGIN(Q)
+    if(IsKeyPressed(RBKEY_NAME(Q))){
+        const bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
+
+        if(is_shift)
+            RealTimeHandler::getInstance()->addTimeScale(-5.f);
+        else
+            RealTimeHandler::getInstance()->addTimeScale(-1.f);
+    }
+HANDLE_KEY_END
+
+HANDLE_KEY_BEGIN(ONE)
+    if(IsKeyDown(RBKEY_NAME(ONE))){
+        bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
+        bool is_alt = IsKeyDown(RBKEY_NAME(LEFT_ALT));
+
+        if(is_alt){
+            if(is_shift)
+                RealTimeHandler::getInstance()->setTimeScaleByLerp(-1.0f, 0.05f);
+            else
+                RealTimeHandler::getInstance()->setTimeScale(-1.0f);
+        }    
+        else{
+            if(is_shift)
+                RealTimeHandler::getInstance()->setTimeScaleByLerp(1.0f, 0.05f);
+            else
+                RealTimeHandler::getInstance()->setTimeScale(1.0f);
+        }
+    }
+HANDLE_KEY_END
+
+HANDLE_KEY_BEGIN(TWO)
+    if(IsKeyDown(RBKEY_NAME(TWO))){
+        bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
+        bool is_alt = IsKeyDown(RBKEY_NAME(LEFT_ALT));
+
+        if(is_alt){
+            if(is_shift)
+                RealTimeHandler::getInstance()->setTimeScaleByLerp(-2.0f, 0.05f);
+            else
+                RealTimeHandler::getInstance()->setTimeScale(-2.0f);
+        }    
+        else{
+            if(is_shift)
+                RealTimeHandler::getInstance()->setTimeScaleByLerp(5.0f, 0.05f);
+            else
+                RealTimeHandler::getInstance()->setTimeScale(2.0f);
+        }
+    }
+HANDLE_KEY_END
+
+
 
 #endif // !_KEY_HANDLE_H_

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _SUB_H_
+#define _SUB_H_
 
 #include "UtilTypes.h"
 
@@ -18,3 +19,5 @@ namespace umath{
         return { a - b.x, a - b.y };
     }
 }
+
+#endif // !_SUB_H_

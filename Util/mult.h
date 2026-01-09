@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MULT_H_
+#define _MULT_H_
 
 #include "UtilTypes.h"
 
@@ -19,3 +20,4 @@ namespace umath{
     }
 }
 
+#endif // !_MULT_H_

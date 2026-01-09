@@ -1,18 +1,18 @@
-#ifndef _SIDE_BAR_BLOCK_H_
-#define _SIDE_BAR_BLOCK_H_
+#ifndef _LEFT_SIDE_BAR_BLOCK_H_
+#define _LEFT_SIDE_BAR_BLOCK_H_
 
 #include <raylib.h>
 #include <string>
 #include <memory>
 
-#include "SideBarTasks.h"
+#include "LeftSideBarTasks.h"
 
-class SideBarBlock{
+class LeftSideBarBlock{
 public:
-    SideBarBlock(
+    LeftSideBarBlock(
         Vector2 base, Vector2 size,
         std::string title,
-        std::unique_ptr<ISideBarTask> task_on_click):
+        std::unique_ptr<ILeftSideBarTask> task_on_click):
             _base(base), 
             _size(size),
             _title(title), 
@@ -154,11 +154,11 @@ private:
 
     static constexpr Color _block_color_border = {128, 158, 74, 255};
 
-    Vector2 _base;
-    Vector2 _size;
-    std::string _title;
+    const Vector2 _base;
+    const Vector2 _size;
+    const std::string _title;
 
-    std::unique_ptr<ISideBarTask> _task_on_click;
+    std::unique_ptr<ILeftSideBarTask> _task_on_click;
 };
 
-#endif // !_SIDE_BAR_BLOCK_H_
+#endif // !_LEFT_SIDE_BAR_BLOCK_H_

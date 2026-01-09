@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _NORMALIZE_H_
+#define _NORMALIZE_H_
 
 #include "norm.h"
 #include "mult.h"
@@ -20,3 +21,5 @@ namespace umath{
         return mult(v, (1 / len));
     }
 }
+
+#endif // !_NORMALIZE_H_

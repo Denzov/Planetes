@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _ADD_H_
+#define _ADD_H_
 
 #include <concepts>
 #include "UtilTypes.h"
@@ -19,3 +20,5 @@ namespace umath{
         return { a + b.x, a + b.y };
     }
 }
+
+#endif // !_ADD_H_

@@ -39,6 +39,12 @@ private:
         _all_keys.push_back(std::make_unique<HKey_F11>());
         _all_keys.push_back(std::make_unique<HKey_TAB>());
         _all_keys.push_back(std::make_unique<HKey_F>());
+
+        _all_keys.push_back(std::make_unique<HKey_SPACE>());
+        _all_keys.push_back(std::make_unique<HKey_E>());
+        
+        _all_keys.push_back(std::make_unique<HKey_ONE>());
+        _all_keys.push_back(std::make_unique<HKey_TWO>());
     }
     ~KeyboardHandler(){}
 

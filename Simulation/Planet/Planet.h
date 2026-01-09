@@ -9,13 +9,18 @@
 #include "../TimeHandler/TimeHandler.h"
 #include "../../Util/all.h"
 
+struct Vec2Double{
+    double x;
+    double y;
+};
+
 struct PlanetData{
-    float radius;
-    float mass;
-    Vector2 position;
-    Vector2 speed0;
-    Vector2 old_position = {0.f, 0.f};
-    Vector2 accel = {0.f, 0.f};
+    double radius;
+    double mass;
+    Vec2Double position;
+    Vec2Double speed0;
+    Vec2Double old_position = {0.f, 0.f};
+    Vec2Double accel = {0.f, 0.f};
     bool is_collided = false;
 };
 
@@ -32,8 +37,19 @@ public:
         return _data.radius;
     }
 
-    Vector2 getPosition() const{
+    double getRadiusRb() const{
+        return static_cast<float>(_data.radius);
+    }
+
+    Vec2Double getPosition() const{
         return _data.position;
+    }
+
+    Vector2 getPositionRb() const{
+        return Vector2{
+            .x = static_cast<float>(_data.position.x),
+            .y = static_cast<float>(_data.position.y)
+        };
     }
 
     float getMass() const{
@@ -44,34 +60,34 @@ public:
         return _id;
     }
 
-    Vector2 getTempAccel() const{
+    Vec2Double getTempAccel() const{
         return _data.accel;
     }
 
-    void setPosition(Vector2 pos){
+    void setPosition(Vec2Double pos){
         _data.position = pos;
     }
 
-    void addPosition(Vector2 dpos){
+    void addPosition(Vec2Double dpos){
         _data.position = umath::add(_data.position, dpos);
     }
 
-    void setSpeed(Vector2 speed){
+    void setSpeed(Vec2Double speed){
         const float dt = PhysTimeHandler::getInstance()->getTimeStep(); 
         _data.old_position = umath::sub(_data.position, umath::mult(speed, dt));
     }
     
-    void addSpeed(Vector2 dspeed){
+    void addSpeed(Vec2Double dspeed){
         const float dt = PhysTimeHandler::getInstance()->getTimeStep(); 
-        const Vector2 shift = umath::mult(dspeed, dt);
+        const Vec2Double shift = umath::mult(dspeed, dt);
         _data.old_position = umath::sub(_data.old_position, shift);
     }
 
-    void setAccel(Vector2 accel){
+    void setAccel(Vec2Double accel){
         _data.accel = accel;
     }
 
-    void addAccel(Vector2 accel){
+    void addAccel(Vec2Double accel){
         _data.accel = umath::add(_data.accel, accel);
     }
 
@@ -80,20 +96,18 @@ public:
     }
 
     void update(){
-        const float dtime = PhysTimeHandler::getInstance()->getTimeStep();
+        const float real_dtime = RealTimeHandler::getInstance()->getScaledDeltaTime();
+        const double phys_dtime = PhysTimeHandler::getInstance()->getTimeStep();
         
-        const Vector2 temp_pos = _data.position;
+        const Vec2Double temp_pos = _data.position;
 
-        const Vector2 velocity_term =
+        const Vec2Double velocity_term =
             umath::sub(_data.position, _data.old_position);
 
-        const Vector2 accel_term = 
-            umath::mult(_data.accel, dtime * dtime);
+        const Vec2Double accel_term = 
+            umath::mult(_data.accel, phys_dtime * phys_dtime);
 
-            
-        // std::cout << _id << ": " << accel_term.x << ", " << accel_term.y << std::endl;
-
-        _data.position = 
+        _data.position =
             umath::add(_data.position, umath::add(velocity_term, accel_term));
 
         _data.old_position = temp_pos;

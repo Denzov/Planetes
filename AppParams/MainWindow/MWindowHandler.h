@@ -6,11 +6,11 @@
 
 class MWindowHandler{
 public:
-    struct Data {
-        std::string title = "Planetes";
-        int width = 1000;
-        int height = 1000;
-        int fps = 60;
+    struct DefaultData {
+        static constexpr std::string title = "Planetes";
+        static constexpr int width = 1000;
+        static constexpr int height = 1000;
+        static constexpr int fps = 60;
     };
 
     static MWindowHandler* getInstance(){
@@ -20,8 +20,8 @@ public:
 
     void init(){
         SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-        InitWindow(data.width, data.height, data.title.c_str());
-        SetTargetFPS(data.fps);
+        InitWindow(DefaultData::width, DefaultData::height, DefaultData::title.c_str());
+        SetTargetFPS(DefaultData::fps);
     }
 
     void addCommand(MWindowCommand cmd){
@@ -33,10 +33,6 @@ public:
         processMWindow(_commands);
     }
 
-    MWindowHandler::Data getData(){
-        return data;
-    }
-
     MWindowHandler(const MWindowHandler&) = delete;
     MWindowHandler& operator=(const MWindowHandler&) = delete;
 
@@ -45,8 +41,6 @@ private:
     ~MWindowHandler(){}
 
 private:
-    Data data;
-
     std::string _title;
     std::queue<MWindowCommand> _commands;
 };
