@@ -2,6 +2,7 @@
 #define _GUI_HANDLER_H_
 
 #include "LeftSideBar/LeftSideBar.h"
+#include "RightSideBar/RightSideBar.h"
 // #include "FpsBar/FpsBar.h"
 // #include "TimeBar/TimeBar.h"
 
@@ -25,6 +26,8 @@ public:
         UIParams::getInstance()->setField("is_debug", false);
 
         _left_side_bar.init();
+        _right_side_bar.init();
+
     }
 
     void draw(){
@@ -35,19 +38,7 @@ public:
             _left_side_bar.handle();
         }
 
-        const bool is_close_fps_bar =
-            std::any_cast<bool>(UIParams::getInstance()->getField("is_close_fps_bar"));
-
-        if(!is_close_fps_bar){
-            // _fps_bar.draw();
-        }
-
-        const bool is_close_time_bar =
-            std::any_cast<bool>(UIParams::getInstance()->getField("is_close_time_bar"));
-
-        if(!is_close_time_bar){
-            // _time_bar.draw();
-        }
+        _right_side_bar.handle();
     }
     
 private:
@@ -55,6 +46,7 @@ private:
     ~GUIHandler(){}
 private:
     LeftSideBar _left_side_bar;
+    RightSideBar _right_side_bar;
     // FpsBar _fps_bar;
     // TimeBar _time_bar;
 };

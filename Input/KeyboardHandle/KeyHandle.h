@@ -162,24 +162,46 @@ HANDLE_KEY_BEGIN(SPACE)
 HANDLE_KEY_END
 
 HANDLE_KEY_BEGIN(E)
-    if(IsKeyPressed(RBKEY_NAME(E))){
-        const bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
-
-        if(is_shift)
-            RealTimeHandler::getInstance()->addTimeScale(5.f);
-        else
-            RealTimeHandler::getInstance()->addTimeScale(1.f);
+    const bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
+    const bool is_ctrl = IsKeyDown(RBKEY_NAME(LEFT_CONTROL));
+    
+    if(is_ctrl){
+        if(IsKeyPressed(RBKEY_NAME(E))){    
+            if(is_shift)
+                RealTimeHandler::getInstance()->addTimeScale(0.01f);
+            else
+                RealTimeHandler::getInstance()->addTimeScale(1.f);
+        }
+    }
+    else{
+        if(IsKeyDown(RBKEY_NAME(E))){    
+            if(is_shift)
+                RealTimeHandler::getInstance()->addTimeScale(0.01f);
+            else
+                RealTimeHandler::getInstance()->addTimeScale(1.f);
+        }
     }
 HANDLE_KEY_END
 
 HANDLE_KEY_BEGIN(Q)
-    if(IsKeyPressed(RBKEY_NAME(Q))){
-        const bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
-
-        if(is_shift)
-            RealTimeHandler::getInstance()->addTimeScale(-5.f);
-        else
-            RealTimeHandler::getInstance()->addTimeScale(-1.f);
+    const bool is_shift = IsKeyDown(RBKEY_NAME(LEFT_SHIFT));
+    const bool is_ctrl = IsKeyDown(RBKEY_NAME(LEFT_CONTROL));
+    
+    if(is_ctrl){
+        if(IsKeyPressed(RBKEY_NAME(Q))){    
+            if(is_shift)
+                RealTimeHandler::getInstance()->addTimeScale(-0.01f);
+            else
+                RealTimeHandler::getInstance()->addTimeScale(-1.f);
+        }
+    }
+    else{
+        if(IsKeyDown(RBKEY_NAME(Q))){    
+            if(is_shift)
+                RealTimeHandler::getInstance()->addTimeScale(-0.01f);
+            else
+                RealTimeHandler::getInstance()->addTimeScale(-1.f);
+        }
     }
 HANDLE_KEY_END
 

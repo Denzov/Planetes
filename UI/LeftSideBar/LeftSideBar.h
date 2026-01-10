@@ -11,12 +11,12 @@
 class LeftSideBar{
 public:
     void init(){
-        pushOnNextPlace("EXIT", std::make_unique<SB_TASK_EXIT>());
-        pushOnNextPlace("TOGGLE\nFS", std::make_unique<SB_TASK_TOGGLE_FULLSCREEN>());
-        pushOnNextPlace("SPAWN\nPLANET", std::make_unique<SB_TASK_NONE>());
+        pushBask("EXIT", std::make_unique<SB_TASK_EXIT>());
+        pushBask("TOGGLE\nFS", std::make_unique<SB_TASK_TOGGLE_FULLSCREEN>());
+        pushBask("SPAWN\nPLANET", std::make_unique<SB_TASK_NONE>());
     }
 
-    void pushOnNextPlace(
+    void pushBask(
         std::string title, 
         std::unique_ptr<ILeftSideBarTask> task){
 

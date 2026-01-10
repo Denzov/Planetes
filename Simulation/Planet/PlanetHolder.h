@@ -49,6 +49,7 @@ public:
 
         while (std::abs(real_dt) > phys_temp_time) {
             phys_temp_time += PhysTimeHandler::getInstance()->getTimeStep();
+            PhysTimeHandler::getInstance()->timeStep();
 
             for (size_t i = 0; i < _planets.size(); i++) {
                 for (size_t j = i + 1; j < _planets.size(); j++) {

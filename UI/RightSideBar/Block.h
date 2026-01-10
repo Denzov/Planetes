@@ -6,14 +6,16 @@
 
 class RightSideBarBlock{
 public:
-    using upd_data_func = std::string (*)();
+    using updDataFunc = std::string (*)();
 
     RightSideBarBlock(
-        Vector2 base,
+        const float y_offset_ratio,
+        const float font_size,
         std::string description,
-        upd_data_func upd_data_func
+        updDataFunc upd_data_func
     ):
-        _base(base),
+        _y_offset_ratio(y_offset_ratio),
+        _font_size(font_size),
         _description(description),
         _upd_data_func(upd_data_func){}
 
@@ -21,19 +23,29 @@ public:
         const std::string data = _upd_data_func();
         std::string drawable = data + _description;
 
+        const float text_width = static_cast<float>(MeasureText(drawable.c_str(), _font_size));
+        
+        const float x_offset = GetRenderWidth() * _x_offset_ratio - text_width;
+        const float y_offset = GetRenderHeight() * _y_offset_ratio;
+
+        // std::cout << x_offset << " " << y_offset << " " << _y_offset_ratio<< std::endl;
+
         DrawText(
             drawable.c_str(),
-            _base.x,
-            _base.y,
-            20,
-            BLACK
+            x_offset,
+            y_offset,
+            _font_size,
+            WHITE
         );
-
     }
 private:
-    const Vector2 _base;
-    const std::string _description;
-    upd_data_func _upd_data_func;
+    static constexpr float _x_offset_ratio = 0.99f;
+
+    const float _font_size;
+    const float _y_offset_ratio;
+    const std::string _description;    
+    updDataFunc _upd_data_func;
+
 };
 
 #endif // !_RIGHT_SIDE_BAR_BLOCK_H_

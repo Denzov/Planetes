@@ -42,6 +42,7 @@ private:
 
         _all_keys.push_back(std::make_unique<HKey_SPACE>());
         _all_keys.push_back(std::make_unique<HKey_E>());
+        _all_keys.push_back(std::make_unique<HKey_Q>());
         
         _all_keys.push_back(std::make_unique<HKey_ONE>());
         _all_keys.push_back(std::make_unique<HKey_TWO>());
