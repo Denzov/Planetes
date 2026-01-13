@@ -76,7 +76,7 @@ private:
     ~PhysTimeHandler() = default;
 
 private:
-    static constexpr double _TIME_STEP = 0.00005f;
+    static constexpr double _TIME_STEP = 0.0005f;
     double _time = 0.f;
 
 };

@@ -10,7 +10,7 @@
 class RightSideBar{
 public:
     void init(){
-        pushBack(" s", 30, get_sim_time);
+        pushBack("", 30, get_sim_time);
         pushBack("X", 25, get_time_scale);
         pushBackVoid(60);
         pushBack(" FPS", 20, get_fps);

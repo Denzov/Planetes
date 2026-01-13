@@ -9,29 +9,29 @@ void App::init()
         .radius = 10.f,
         .mass = 10000.f,
         .position = {0.f, 0.f}, 
-        .speed0 = {-30.f, 0.f}
+        .speed0 = {0.f, 0.f}
     });
-
-    // PlanetHolder::getInstance()->addPlanet({   
-    //     .radius = 10.f,
-    //     .mass = 10000000.f,
-    //     .position = {0.f, 100.f}, 
-    //     .speed0 = {-300.f, 0.f}
-    // });
-
-    // PlanetHolder::getInstance()->addPlanet({   
-    //     .radius = 10.f,
-    //     .mass = 10000000.f,
-    //     .position = {0.f, -100.f}, 
-    //     .speed0 = {300.f, 0.f}
-    // });
 
     PlanetHolder::getInstance()->addPlanet({   
         .radius = 10.f,
-        .mass = 1000.f,
-        .position = {0.f, -600.f}, 
-        .speed0 = {300.f, 0.f}
+        .mass = 10.f,
+        .position = {200.f, 0.f}, 
+        .speed0 = {0.f, -700.f}
     });
+
+    PlanetHolder::getInstance()->addPlanet({   
+        .radius = 10.f,
+        .mass = 10.f,
+        .position = {-200.f, 0.f}, 
+        .speed0 = {0.f, 700.f}
+    });
+
+    // PlanetHolder::getInstance()->addPlanet({   
+    //     .radius = 10.f,
+    //     .mass = 1000.f,
+    //     .position = {0.f, -4000.f}, 
+    //     .speed0 = {60.f, 0.f}
+    // });
 }
 
 void App::simulate()
